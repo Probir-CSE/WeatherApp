@@ -46,20 +46,20 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.photoViewHol
         return mdata.size();
     }
 
-    public void setLayoutManager(GridLayoutManager layoutManager) {
-        this.layoutManager = layoutManager;
-    }
-
     public GridLayoutManager getLayoutManager() {
         return layoutManager;
     }
 
-    public void setAdapter(PhotoAdapter adapter) {
-        this.adapter = adapter;
+    public void setLayoutManager(GridLayoutManager layoutManager) {
+        this.layoutManager = layoutManager;
     }
 
     public PhotoAdapter getAdapter() {
         return adapter;
+    }
+
+    public void setAdapter(PhotoAdapter adapter) {
+        this.adapter = adapter;
     }
 
     //--------------------------View Holder-------------------------------

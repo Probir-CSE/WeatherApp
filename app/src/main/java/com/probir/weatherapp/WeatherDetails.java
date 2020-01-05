@@ -1,33 +1,23 @@
 package com.probir.weatherapp;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.tabs.TabItem;
-import com.google.android.material.tabs.TabLayout;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
-import android.view.View;
-import android.view.ViewParent;
-import android.widget.TableLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class WeatherDetails extends AppCompatActivity {
 
-    TextView tvWeather,tvNews,tvPhoto;
-    View viewWeather,viewNews,viewPhoto;
+    TextView tvWeather, tvNews, tvPhoto;
+    View viewWeather, viewNews, viewPhoto;
 
     List<PhotoConstractor> ListPhoto;
     List<PhotoConstractor> ListNews;
@@ -42,13 +32,13 @@ public class WeatherDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_weather_details);
 
-        tvWeather=findViewById(R.id.tv_weather);
-        tvNews=findViewById(R.id.tv_news);
-        tvPhoto=findViewById(R.id.tv_photo);
+        tvWeather = findViewById(R.id.tv_weather);
+        tvNews = findViewById(R.id.tv_news);
+        tvPhoto = findViewById(R.id.tv_photo);
 
-        viewWeather=findViewById(R.id.view_weather);
-        viewNews=findViewById(R.id.tv_news);
-        viewPhoto=findViewById(R.id.tv_photo);
+        viewWeather = findViewById(R.id.view_weather);
+        viewNews = findViewById(R.id.view_news);
+        viewPhoto = findViewById(R.id.view_photo);
 //-------------onclick text Color Change---------------------------
         tvWeather.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,8 +66,8 @@ public class WeatherDetails extends AppCompatActivity {
             public void onClick(View view) {
 
                 tvNews.setTextColor(0xFF9C27B0);
-                viewWeather.setBackgroundColor(0xFF9C27B0);
-                viewWeather.setVisibility(View.VISIBLE);
+                viewNews.setBackgroundColor(0xFF9C27B0);
+                viewNews.setVisibility(View.VISIBLE);
 
                 tvWeather.setTextColor(getResources().getColor(R.color.LightDark));
                 viewWeather.setVisibility(View.GONE);
@@ -175,7 +165,6 @@ public class WeatherDetails extends AppCompatActivity {
         ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
         ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
         ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
-
 
 
         //------------------------
