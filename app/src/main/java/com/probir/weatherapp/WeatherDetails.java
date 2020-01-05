@@ -1,6 +1,7 @@
 package com.probir.weatherapp;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -17,12 +18,16 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.View;
 import android.view.ViewParent;
 import android.widget.TableLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class WeatherDetails extends AppCompatActivity {
+
+    TextView tvWeather,tvNews,tvPhoto;
+    View viewWeather,viewNews,viewPhoto;
 
     List<PhotoConstractor> ListPhoto;
     List<PhotoConstractor> ListNews;
@@ -36,6 +41,66 @@ public class WeatherDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_weather_details);
+
+        tvWeather=findViewById(R.id.tv_weather);
+        tvNews=findViewById(R.id.tv_news);
+        tvPhoto=findViewById(R.id.tv_photo);
+
+        viewWeather=findViewById(R.id.view_weather);
+        viewNews=findViewById(R.id.tv_news);
+        viewPhoto=findViewById(R.id.tv_photo);
+//-------------onclick text Color Change---------------------------
+        tvWeather.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                tvWeather.setText("Weather!");
+//                tvWeather.setBackgroundColor(0xFF9C27B0);
+                tvWeather.setTextColor(0xFF9C27B0);
+                viewWeather.setBackgroundColor(0xFF9C27B0);
+                viewWeather.setVisibility(View.VISIBLE);
+
+                tvNews.setTextColor(getResources().getColor(R.color.LightDark));
+                viewNews.setVisibility(View.GONE);
+                tvPhoto.setTextColor(getResources().getColor(R.color.LightDark));
+                viewPhoto.setVisibility(View.GONE);
+
+//                viewWeather.setVisibility(View.GONE);
+//                tvWeather.setBackgroundResource(R.color.Purple);
+            }
+        });
+
+        //----------------------End of onclick text Color Change------------------------
+
+        tvNews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                tvNews.setTextColor(0xFF9C27B0);
+                viewWeather.setBackgroundColor(0xFF9C27B0);
+                viewWeather.setVisibility(View.VISIBLE);
+
+                tvWeather.setTextColor(getResources().getColor(R.color.LightDark));
+                viewWeather.setVisibility(View.GONE);
+                tvPhoto.setTextColor(getResources().getColor(R.color.LightDark));
+                viewPhoto.setVisibility(View.GONE);
+
+            }
+        });
+
+
+        tvPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tvPhoto.setTextColor(0xFF9C27B0);
+                viewPhoto.setBackgroundColor(0xFF9C27B0);
+                viewPhoto.setVisibility(View.VISIBLE);
+
+                tvNews.setTextColor(getResources().getColor(R.color.LightDark));
+                viewNews.setVisibility(View.GONE);
+                tvWeather.setTextColor(getResources().getColor(R.color.LightDark));
+                viewWeather.setVisibility(View.GONE);
+            }
+        });
 
         //-----------------TabLayout----------
 
@@ -132,17 +197,17 @@ public class WeatherDetails extends AppCompatActivity {
     }
 
 
-    public void news(View view) {
-
-
-        Toast.makeText(getApplicationContext(),"Btn clickt",Toast.LENGTH_SHORT).show();
-        RecyclerView photoRv = findViewById(R.id.rv_photo);
-        PhotoAdapter phadapter = new PhotoAdapter(this, ListPhoto);
-
-        photoRv.setLayoutManager(new GridLayoutManager(this, 3));
-        photoRv.setAdapter(phadapter);
-
-//        photoRv.Recycler.Clear
-//        adapter.notifyDataSetChanged();
-    }
+//    public void news(View view) {
+//
+//
+//        Toast.makeText(getApplicationContext(),"Btn clickt",Toast.LENGTH_SHORT).show();
+//        RecyclerView photoRv = findViewById(R.id.rv_photo);
+//        PhotoAdapter phadapter = new PhotoAdapter(this, ListPhoto);
+//
+//        photoRv.setLayoutManager(new GridLayoutManager(this, 3));
+//        photoRv.setAdapter(phadapter);
+//
+////        photoRv.Recycler.Clear
+////        adapter.notifyDataSetChanged();
+//    }
 }

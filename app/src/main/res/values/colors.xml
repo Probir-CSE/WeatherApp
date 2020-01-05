@@ -7,4 +7,5 @@
     <color name="Black">#020000</color>
     <color name="Purple">#7710DA</color>
     <color name="Light">#F0F0F0</color>
+    <color name="LightDark">#3C3C3C</color>
 </resources>
