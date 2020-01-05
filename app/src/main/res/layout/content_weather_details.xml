@@ -205,6 +205,7 @@
                 android:id="@+id/view_news"
                 android:layout_width="50dp"
                 android:layout_height="1dp"
+
                 android:layout_gravity="center"
                 android:background="@color/colorPrimary"
                 android:visibility="gone" />
