@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         String content;
         Weather weather = new Weather();
         try {
-            content = weather.execute("http://api.openweathermap.org/data/2.5/weather?id=1337179&appid=020d1042f22d9f7dd46628c5b5505f06&units=Imperial").get();
+            content = weather.execute("https://api.myjson.com/bins/165hic").get();
 
             Log.i("content", content);
 
@@ -128,8 +128,8 @@ public class MainActivity extends AppCompatActivity {
 //            --------------------------------
 
             JSONObject mainPart = new JSONObject(maintemperature);
-            double temperatures = mainPart.getDouble("temp");
-            double convertToCel = (temperatures - 32) / 1.8000;
+            int temperatures = mainPart.getInt("temp");
+            int convertToCel = (int) ((temperatures - 32) / 1.8000);
 
             Log.i("mainData", String.valueOf(convertToCel));
             temperatureTv.setText(String.valueOf(convertToCel));

@@ -172,31 +172,31 @@ public class WeatherDetails extends AppCompatActivity {
 //
 
         //------------------------
-//        Weather weatherdata = new Weather();
-//        try {
-//            String content = weatherdata.execute("http://api.openweathermap.org/data/2.5/weather?id=1337179&appid=020d1042f22d9f7dd46628c5b5505f06&units=Imperial").get();
-////            Log.i("All Data", content);
-//
-//            JSONObject jsonMainWeatherObject = new JSONObject(content);
-//            String main = jsonMainWeatherObject.getString("main");
-//            Log.i("Main Data", main);
-//
-//            JSONObject tempData = new JSONObject(main);
-//            double temp = tempData.getDouble("temp");
-//            double convertToCel = (temp - 32) / 1.8000;
-//            Log.i("Temperature:", String.valueOf(convertToCel));
-//
-//
-//            tempTv.setText(String.valueOf(convertToCel));
-//
-//
-//        } catch (ExecutionException e) {
-//            e.printStackTrace();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
+        Weather weatherdata = new Weather();
+        try {
+            String content = weatherdata.execute("http://api.openweathermap.org/data/2.5/weather?id=1337179&appid=020d1042f22d9f7dd46628c5b5505f06&units=Imperial").get();
+//            Log.i("All Data", content);
+
+            JSONObject jsonMainWeatherObject = new JSONObject(content);
+            String main = jsonMainWeatherObject.getString("main");
+            Log.i("Main Data", main);
+
+            JSONObject tempData = new JSONObject(main);
+            int temp = tempData.getInt("temp");
+            int convertToCel = (int) ((temp - 32) / 1.8000);
+            Log.i("Temperature:", String.valueOf(convertToCel));
+
+
+            tempTv.setText(String.valueOf(convertToCel));
+
+
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         //------------------------
 
