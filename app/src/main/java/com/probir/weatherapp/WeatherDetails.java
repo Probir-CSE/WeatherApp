@@ -2,6 +2,7 @@ package com.probir.weatherapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,12 +12,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class WeatherDetails extends AppCompatActivity {
 
-    TextView tvWeather, tvNews, tvPhoto;
+    TextView tvWeather, tvNews, tvPhoto, tempTv;
     View viewWeather, viewNews, viewPhoto;
 
     List<PhotoConstractor> ListPhoto;
@@ -31,6 +36,7 @@ public class WeatherDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_weather_details);
+        tempTv = findViewById(R.id.tv_temp);
 
         tvWeather = findViewById(R.id.tv_weather);
         tvNews = findViewById(R.id.tv_news);
@@ -39,6 +45,7 @@ public class WeatherDetails extends AppCompatActivity {
         viewWeather = findViewById(R.id.view_weather);
         viewNews = findViewById(R.id.view_news);
         viewPhoto = findViewById(R.id.view_photo);
+
 //-------------onclick text Color Change---------------------------
         tvWeather.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,9 +65,7 @@ public class WeatherDetails extends AppCompatActivity {
 //                tvWeather.setBackgroundResource(R.color.Purple);
             }
         });
-
         //----------------------End of onclick text Color Change------------------------
-
         tvNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,7 +81,6 @@ public class WeatherDetails extends AppCompatActivity {
 
             }
         });
-
 
         tvPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,16 +160,43 @@ public class WeatherDetails extends AppCompatActivity {
         //--------------------
 
         //------------------------
+//
+//        ListNews = new ArrayList<>();
+//        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
+//        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
+//        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
+//        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
+//        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
+//        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
+//        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
+//
 
-        ListNews = new ArrayList<>();
-        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
-        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
-        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
-        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
-        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
-        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
-        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
-
+        //------------------------
+//        Weather weatherdata = new Weather();
+//        try {
+//            String content = weatherdata.execute("http://api.openweathermap.org/data/2.5/weather?id=1337179&appid=020d1042f22d9f7dd46628c5b5505f06&units=Imperial").get();
+////            Log.i("All Data", content);
+//
+//            JSONObject jsonMainWeatherObject = new JSONObject(content);
+//            String main = jsonMainWeatherObject.getString("main");
+//            Log.i("Main Data", main);
+//
+//            JSONObject tempData = new JSONObject(main);
+//            double temp = tempData.getDouble("temp");
+//            double convertToCel = (temp - 32) / 1.8000;
+//            Log.i("Temperature:", String.valueOf(convertToCel));
+//
+//
+//            tempTv.setText(String.valueOf(convertToCel));
+//
+//
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 
         //------------------------
 
@@ -173,7 +204,6 @@ public class WeatherDetails extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
                 startActivity(intent);
             }
