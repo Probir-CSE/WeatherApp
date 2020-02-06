@@ -1,5 +1,6 @@
 package com.probir.weatherapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -26,6 +28,9 @@ public class WeatherDetails extends AppCompatActivity {
 
     List<PhotoConstractor> ListPhoto;
     List<PhotoConstractor> ListNews;
+    private RecyclerView photoRv;
+    private PhotoAdapter phadapter;
+    private Context context = this;
 
 //    private TabLayout tablayout;
 //    private ViewPager viewpager;
@@ -61,6 +66,9 @@ public class WeatherDetails extends AppCompatActivity {
                 tvPhoto.setTextColor(getResources().getColor(R.color.LightDark));
                 viewPhoto.setVisibility(View.GONE);
 
+                weaterRV();
+                photoRv.setLayoutManager(new GridLayoutManager(context, 3));
+                photoRv.setAdapter(new PhotoAdapter(getApplicationContext(), ListPhoto));
 //                viewWeather.setVisibility(View.GONE);
 //                tvWeather.setBackgroundResource(R.color.Purple);
             }
@@ -78,7 +86,9 @@ public class WeatherDetails extends AppCompatActivity {
                 viewWeather.setVisibility(View.GONE);
                 tvPhoto.setTextColor(getResources().getColor(R.color.LightDark));
                 viewPhoto.setVisibility(View.GONE);
-
+                newsRV();
+                photoRv.setLayoutManager(new GridLayoutManager(context, 3));
+                photoRv.setAdapter(new PhotoAdapter(getApplicationContext(), ListPhoto));
             }
         });
 
@@ -93,6 +103,9 @@ public class WeatherDetails extends AppCompatActivity {
                 viewNews.setVisibility(View.GONE);
                 tvWeather.setTextColor(getResources().getColor(R.color.LightDark));
                 viewWeather.setVisibility(View.GONE);
+                photoRV();
+                photoRv.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+                photoRv.setAdapter(new PhotoAdapter(getApplicationContext(), ListPhoto));
             }
         });
 
@@ -135,24 +148,11 @@ public class WeatherDetails extends AppCompatActivity {
 //
 
         //------------------------------------
-
-        ListPhoto = new ArrayList<>();
-        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
-        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
-        ListPhoto.add(new PhotoConstractor(R.drawable.sunrise));
-        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
-        ListPhoto.add(new PhotoConstractor(R.drawable.sunrise));
-        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
-        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
-        ListPhoto.add(new PhotoConstractor(R.drawable.sunrise));
-        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
-        ListPhoto.add(new PhotoConstractor(R.drawable.sunrise));
-        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
-        ListPhoto.add(new PhotoConstractor(R.drawable.sunrise));
+        weaterRV();
 
         //-------------------------
-        RecyclerView photoRv = findViewById(R.id.rv_photo);
-        PhotoAdapter phadapter = new PhotoAdapter(this, ListPhoto);
+        photoRv = findViewById(R.id.rv_photo);
+        phadapter = new PhotoAdapter(this, ListPhoto);
 
         photoRv.setLayoutManager(new GridLayoutManager(this, 3));
         photoRv.setAdapter(phadapter);
@@ -208,6 +208,45 @@ public class WeatherDetails extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void weaterRV() {
+        ListPhoto = new ArrayList<>();
+        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sunrise));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sunrise));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sunrise));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sunrise));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sunrise));
+    }
+
+    private void photoRV() {
+        ListPhoto = new ArrayList<>();
+        ListPhoto.add(new PhotoConstractor(R.drawable.sunrise));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sunrise));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sunrise));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sunrise));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sunrise));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
+    }
+
+    private void newsRV() {
+        ListPhoto = new ArrayList<>();
+        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sunrise));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sunrise));
+        ListPhoto.add(new PhotoConstractor(R.drawable.sun2));
     }
 
     @Override

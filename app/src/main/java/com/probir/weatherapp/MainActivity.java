@@ -1,32 +1,19 @@
 package com.probir.weatherapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.gson.JsonObject;
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.concurrent.ExecutionException;
-
-import retrofit2.http.Url;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -79,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             content = weather.execute("https://api.myjson.com/bins/165hic").get();
 
-            Log.i("content", content);
+            Log.e("content", content);
 
             //JSON
             JSONObject jsonObject = new JSONObject(content);
@@ -87,17 +74,17 @@ public class MainActivity extends AppCompatActivity {
             String maintemperature = jsonObject.getString("main");
             String cityName = jsonObject.getString("name");
 
-            Log.i("cityName",cityName);
-            Log.i("weatherdata", weatherdata);
+            Log.e("cityName", cityName);
+            Log.e("weatherdata", weatherdata);
             Date date = Calendar.getInstance().getTime();
-            Log.i("Date", String.valueOf(date));
+            Log.e("Date", String.valueOf(date));
 
             SimpleDateFormat df = new SimpleDateFormat("dd-mm-yyyy");
 //          SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
             String dateOnly = df.format(date);
-            Log.i("Date only",dateOnly);
+            Log.e("Date only", dateOnly);
             locationAndDate.setText(dateOnly);
-            locationAndDate.setText(cityName+" "+dateOnly);
+            locationAndDate.setText(cityName + " " + dateOnly);
 
             //-------------Clear--------------
 
@@ -110,8 +97,8 @@ public class MainActivity extends AppCompatActivity {
                 main = weatherpart.getString("main");
                 description = weatherpart.getString("description");
             }
-            Log.i("main", main);
-            Log.i("description", description);
+            Log.e("main", main);
+            Log.e("description", description);
 
             descripionTv.setText(main);
 
@@ -131,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
             int temperatures = mainPart.getInt("temp");
             int convertToCel = (int) ((temperatures - 32) / 1.8000);
 
-            Log.i("mainData", String.valueOf(convertToCel));
+            Log.e("mainData", String.valueOf(convertToCel));
             temperatureTv.setText(String.valueOf(convertToCel));
 
 
@@ -140,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
             //    -------------------------
         } catch (Exception e) {
+            Log.e("MainActivity", "onCreate: " + e.getLocalizedMessage());
             e.printStackTrace();
         }
 

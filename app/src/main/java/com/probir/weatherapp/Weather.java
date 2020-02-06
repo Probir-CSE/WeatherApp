@@ -1,6 +1,7 @@
 package com.probir.weatherapp;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,8 +33,10 @@ public class Weather extends AsyncTask<String, Void, String> {
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
-        } catch (IOException e) {
+            Log.e("Weather", "doInBackground: " + e.getLocalizedMessage());
+        } catch (Exception e) {
             e.printStackTrace();
+            Log.e("Weather", "doInBackground: " + e.getLocalizedMessage());
         }
         return null;
     }
